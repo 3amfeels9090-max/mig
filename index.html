@@ -25,7 +25,7 @@
       --line: rgba(221, 209, 239, 0.15);
       --line-bright: rgba(221, 209, 239, 0.28);
       --dim-opacity: 0.18;
-      --content-width: 900px;
+       --content-width: 560px;
       --radius-xl: 32px;
       --radius-lg: 26px;
       --radius-md: 18px;
@@ -139,22 +139,29 @@
       padding: 48px 0 38px;
     }
 
-    .header-inner {
-      display: grid;
-      gap: 32px;
-      align-items: end;
-    }
+     .header-inner {
+       display: grid;
+       gap: 24px;
+     }
 
     .header-main {
       position: relative;
       max-width: 650px;
     }
 
-    .title-line {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-    }
+     .greeting {
+       margin-bottom: 12px;
+       color: var(--amber-soft);
+       font-size: 0.82rem;
+       font-weight: 600;
+       letter-spacing: 0.04em;
+     }
+
+     .title-line {
+       display: flex;
+       gap: 18px;
+       align-items: center;
+     }
 
     .moon-mark {
       flex: 0 0 auto;
@@ -184,10 +191,11 @@
       line-height: 1.08;
     }
 
-    h1 {
-      max-width: 10ch;
-      font-size: clamp(2.75rem, 13vw, 5.4rem);
-    }
+     h1 {
+       max-width: none;
+       font-size: clamp(1.8rem, 7vw, 2.1rem);
+       white-space: nowrap;
+     }
 
     .subtitle {
       margin-top: 15px;
@@ -197,15 +205,13 @@
       letter-spacing: 0.01em;
     }
 
-    .screen-control {
-      display: grid;
-      grid-template-columns: auto minmax(130px, 220px);
-      gap: 9px 17px;
-      align-items: center;
-      max-width: 340px;
-      color: var(--text-muted);
-      font-size: 0.82rem;
-      font-weight: 600;
+     .screen-control {
+       display: grid;
+       width: 100%;
+       gap: 8px;
+       color: var(--text-muted);
+       font-size: 0.82rem;
+       font-weight: 600;
     }
 
     .screen-control label {
@@ -215,11 +221,12 @@
       letter-spacing: 0.08em;
     }
 
-    .range-wrap {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+     .range-wrap {
+       display: flex;
+       width: 100%;
+       align-items: center;
+       gap: 12px;
+     }
 
     .range-wrap span {
       display: none;
