@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151621">
+   <title></title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
+
+    :root {
+      --night: #10121e;
+      --charcoal: #171925;
+      --navy: #1d1f31;
+      --surface: rgba(38, 39, 57, 0.84);
+      --surface-bright: #2b2c43;
+      --surface-muted: rgba(30, 31, 47, 0.82);
+      --lavender: #b9a8d8;
+      --lavender-bright: #d8caf0;
+      --amber: #efbc76;
+      --amber-soft: #f5d39d;
+       --text: #e8e4f0;
+       --text-muted: #c8c2d2;
+       --text-soft: #aaa4b7;
+      --line: rgba(221, 209, 239, 0.15);
+      --line-bright: rgba(221, 209, 239, 0.28);
+      --dim-opacity: 0.18;
+      --content-width: 900px;
+      --radius-xl: 32px;
+      --radius-lg: 26px;
+      --radius-md: 18px;
+      --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-width: 320px;
+      background: var(--night);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 9% 6%, rgba(130, 106, 175, 0.16), transparent 31rem),
+        radial-gradient(circle at 93% 31%, rgba(201, 137, 67, 0.1), transparent 27rem),
+        linear-gradient(160deg, var(--charcoal), var(--night) 66%);
+      color: var(--text);
+      font-family: "Quicksand", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button,
+    label,
+    input[type="range"] {
+      touch-action: manipulation;
+    }
+
+    button {
+      border: 0;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid var(--amber-soft);
+      outline-offset: 4px;
+    }
+
+    .page-shell {
+      position: relative;
+      isolation: isolate;
+      min-height: 100vh;
+      overflow: hidden;
+      transition: opacity 3s var(--ease-soft);
+    }
+
+    .page-shell.sleeping {
+      opacity: 0.04;
+    }
+
+    .page-shell::before,
+    .page-shell::after {
+      position: fixed;
+      inset: -15%;
+      z-index: -1;
+      pointer-events: none;
+      content: "";
+    }
+
+    /* A quiet field of tiny dots keeps the page feeling awake without competing with the note. */
+    .page-shell::before {
+      opacity: 0.52;
+      background-image:
+        radial-gradient(circle at 7% 18%, rgba(239, 188, 118, 0.58) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 23% 72%, rgba(216, 202, 240, 0.42) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 47% 22%, rgba(216, 202, 240, 0.45) 0 1.3px, transparent 2px),
+        radial-gradient(circle at 69% 82%, rgba(239, 188, 118, 0.48) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 89% 13%, rgba(216, 202, 240, 0.48) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 94% 63%, rgba(216, 202, 240, 0.33) 0 1.4px, transparent 2px);
+      animation: drift-dots 26s ease-in-out infinite alternate;
+    }
+
+    .page-shell::after {
+      background: radial-gradient(ellipse at 50% 0%, transparent 16%, rgba(8, 9, 17, 0.2) 77%);
+    }
+
+    .dim-layer {
+      position: fixed;
+      z-index: 20;
+      inset: 0;
+      pointer-events: none;
+      background: rgb(0 0 0 / var(--dim-opacity));
+    }
+
+    .content-wrap {
+      width: min(100% - 40px, var(--content-width));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      padding: 48px 0 38px;
+    }
+
+    .header-inner {
+      display: grid;
+      gap: 32px;
+      align-items: end;
+    }
+
+    .header-main {
+      position: relative;
+      max-width: 650px;
+    }
+
+    .title-line {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .moon-mark {
+      flex: 0 0 auto;
+      width: 58px;
+      height: 58px;
+      filter: drop-shadow(0 0 16px rgb(185 168 216 / 0.28));
+    }
+
+    .moon-mark .moon {
+      fill: var(--lavender-bright);
+    }
+
+    .moon-mark .star {
+      fill: var(--amber-soft);
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+    }
+
+    h1,
+    h2 {
+      font-weight: 600;
+      letter-spacing: -0.045em;
+      line-height: 1.08;
+    }
+
+    h1 {
+      max-width: 10ch;
+      font-size: clamp(2.75rem, 13vw, 5.4rem);
+    }
+
+    .subtitle {
+      margin-top: 15px;
+      color: var(--text-muted);
+      font-size: clamp(1rem, 2.5vw, 1.18rem);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .screen-control {
+      display: grid;
+      grid-template-columns: auto minmax(130px, 220px);
+      gap: 9px 17px;
+      align-items: center;
+      max-width: 340px;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .screen-control label {
+      grid-column: 1 / -1;
+      color: var(--amber-soft);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+    }
+
+    .range-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .range-wrap span {
+      display: none;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      min-height: 44px;
+      margin: 0;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+      height: 5px;
+      border: 1px solid rgb(216 202 240 / 0.18);
+      border-radius: 999px;
+      background: rgb(255 255 255 / 0.12);
+    }
+
+    input[type="range"]::-moz-range-track {
+      height: 5px;
+      border: 1px solid rgb(216 202 240 / 0.18);
+      border-radius: 999px;
+      background: rgb(255 255 255 / 0.12);
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      width: 20px;
+      height: 20px;
+      margin-top: -8px;
+      appearance: none;
+      border: 3px solid var(--charcoal);
+      border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 0 2px var(--amber-soft), 0 0 16px rgb(239 188 118 / 0.25);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border: 3px solid var(--charcoal);
+      border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 0 2px var(--amber-soft), 0 0 16px rgb(239 188 118 / 0.25);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .content-section + .content-section {
+      margin-top: 72px;
+    }
+
+    .section-heading {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+      align-items: baseline;
+      margin-bottom: 19px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.35rem, 4vw, 1.8rem);
+    }
+
+    .section-label {
+      color: var(--amber-soft);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .note-card,
+    .breathing-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(145deg, rgb(47 47 68 / 0.88), rgb(32 33 49 / 0.86));
+      box-shadow: 0 24px 60px rgb(4 5 12 / 0.19), inset 0 1px 0 rgb(255 255 255 / 0.035);
+    }
+
+    .note-card {
+      padding: 25px 22px;
+    }
+
+    .note-copy {
+      display: grid;
+      gap: 23px;
+    }
+
+    .note-copy p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      font-weight: 500;
+      overflow-wrap: anywhere;
+      opacity: 0;
+      transform: translateY(9px);
+      animation: note-in 0.9s var(--ease-soft) forwards;
+      animation-delay: var(--note-delay);
+    }
+
+    .breathing-card {
+      display: grid;
+      gap: 26px;
+      padding: 27px 22px 25px;
+      text-align: center;
+    }
+
+    .breathing-intro {
+      margin-inline: auto;
+      max-width: 29ch;
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      font-weight: 500;
+    }
+
+    .breath-stage {
+      display: grid;
+      min-height: 220px;
+      place-items: center;
+    }
+
+    .breath-orb {
+      display: grid;
+      width: min(50vw, 190px);
+      aspect-ratio: 1;
+      place-items: center;
+      border: 1px solid rgb(239 188 118 / 0.55);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, rgb(245 211 157 / 0.74), transparent 12%),
+        radial-gradient(circle, rgb(185 168 216 / 0.48), rgb(112 92 153 / 0.24) 55%, rgb(239 188 118 / 0.08) 70%, transparent 71%);
+      box-shadow: 0 0 0 14px rgb(185 168 216 / 0.055), 0 0 50px rgb(185 168 216 / 0.24), inset 0 0 25px rgb(255 238 210 / 0.1);
+      transform: scale(0.72);
+      animation: breathe 10s ease-in-out infinite;
+    }
+
+    .breath-orb::after {
+      width: 24%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: rgb(255 240 211 / 0.36);
+      box-shadow: 0 0 28px rgb(255 231 186 / 0.4);
+      content: "";
+      opacity: 0.72;
+    }
+
+    .breath-label {
+      margin-top: -5px;
+      color: var(--amber-soft);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 11px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      min-height: 58px;
+      padding: 7px 14px 7px 8px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--surface-muted);
+      color: var(--text-muted);
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 220ms ease, background-color 220ms ease, transform 220ms var(--ease-soft);
+    }
+
+    .check-item:hover {
+      border-color: var(--line-bright);
+      background: rgb(50 50 72 / 0.88);
+    }
+
+    .check-item:active {
+      transform: scale(0.985);
+    }
+
+    .check-item:focus-within {
+      border-color: var(--amber-soft);
+      box-shadow: 0 0 0 3px rgb(245 211 157 / 0.2);
+    }
+
+    .check-item input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .check-box {
+      display: grid;
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      margin-right: 13px;
+      place-items: center;
+      border: 1px solid rgb(216 202 240 / 0.38);
+      border-radius: 14px;
+      background: rgb(255 255 255 / 0.025);
+      transition: border-color 260ms ease, background-color 260ms ease, transform 260ms var(--ease-soft);
+    }
+
+    .check-box::after {
+      width: 10px;
+      height: 18px;
+      border-right: 2px solid var(--charcoal);
+      border-bottom: 2px solid var(--charcoal);
+      content: "";
+      opacity: 0;
+      transform: translateY(-2px) rotate(40deg) scale(0.55);
+      transition: opacity 220ms ease, transform 320ms var(--ease-soft);
+    }
+
+    .check-item input:checked + .check-box {
+      border-color: var(--amber-soft);
+      background: var(--amber-soft);
+      animation: check-settle 420ms var(--ease-soft);
+    }
+
+    .check-item input:checked + .check-box::after {
+      opacity: 1;
+      transform: translateY(-2px) rotate(40deg) scale(1);
+    }
+
+    .check-item input:checked ~ .check-text {
+      color: var(--text-soft);
+      text-decoration: line-through;
+      text-decoration-color: rgb(245 211 157 / 0.5);
+      text-decoration-thickness: 1px;
+    }
+
+    .helper-line {
+      margin-top: 14px;
+      color: var(--text-soft);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .thought-box {
+      display: grid;
+      gap: 17px;
+      padding: 23px;
+      border: 1px solid rgb(185 168 216 / 0.2);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgb(73 60 99 / 0.42), rgb(44 44 65 / 0.7));
+    }
+
+    .thought-button,
+    .sleep-button {
+      display: inline-flex;
+      width: 100%;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 19px;
+      border-radius: 999px;
+      color: var(--charcoal);
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 220ms ease, box-shadow 220ms ease, transform 220ms var(--ease-soft);
+    }
+
+    .thought-button {
+      background: var(--lavender-bright);
+      box-shadow: 0 10px 25px rgb(185 168 216 / 0.12);
+    }
+
+    .thought-button:hover {
+      background: #e4d8f5;
+      box-shadow: 0 14px 28px rgb(185 168 216 / 0.2);
+    }
+
+    .thought-button:active,
+    .sleep-button:active {
+      transform: scale(0.975);
+    }
+
+    .thought-result {
+      min-height: 28px;
+      color: var(--text);
+      font-size: 1.02rem;
+      font-weight: 600;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 500ms ease, transform 500ms var(--ease-soft);
+    }
+
+    .thought-result.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .memories-grid {
+      display: grid;
+      gap: 13px;
+    }
+
+    .memory-card {
+      min-height: 142px;
+      padding: 21px 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, rgb(43 44 64 / 0.87), rgb(29 30 45 / 0.82));
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 700ms var(--ease-soft), transform 700ms var(--ease-soft), border-color 220ms ease;
+      transition-delay: var(--reveal-delay);
+    }
+
+    .memory-card.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .memory-card.placeholder {
+      border-style: dashed;
+      border-color: rgb(216 202 240 / 0.18);
+      color: rgb(208 203 214 / 0.58);
+      background: rgb(31 32 47 / 0.46);
+    }
+
+    .sleep-section {
+      padding-bottom: 67px;
+    }
+
+    .sleep-button {
+      color: var(--text);
+      background: rgb(185 168 216 / 0.12);
+      border: 1px solid rgb(216 202 240 / 0.3);
+      box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+    }
+
+    .sleep-button:hover {
+      background: rgb(185 168 216 / 0.2);
+      border-color: rgb(216 202 240 / 0.48);
+    }
+
+    .site-footer {
+      padding: 24px 0 38px;
+      border-top: 1px solid rgb(216 202 240 / 0.1);
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .sleep-overlay {
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: rgb(4 5 12 / 0.985);
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 3s var(--ease-soft);
+    }
+
+    .sleep-overlay.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sleep-glow {
+      position: absolute;
+      width: min(46vw, 230px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgb(185 168 216 / 0.18), rgb(185 168 216 / 0.05) 40%, transparent 72%);
+      filter: blur(3px);
+      animation: sleep-glow-drift 16s ease-in-out infinite alternate;
+    }
+
+    .sleep-message {
+      position: relative;
+      color: rgb(251 247 242 / 0.68);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    @keyframes note-in {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes breathe {
+      0%,
+      100% {
+        transform: scale(0.72);
+      }
+      40% {
+        transform: scale(1.06);
+      }
+    }
+
+    @keyframes check-settle {
+      0% {
+        transform: scale(0.92);
+      }
+      60% {
+        transform: scale(1.08);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes drift-dots {
+      from {
+        transform: translate3d(-0.7%, -0.4%, 0);
+        opacity: 0.42;
+      }
+      to {
+        transform: translate3d(0.7%, 0.4%, 0);
+        opacity: 0.58;
+      }
+    }
+
+    @keyframes sleep-glow-drift {
+      from {
+        transform: translate3d(-11vw, -5vh, 0) scale(0.92);
+        opacity: 0.62;
+      }
+      to {
+        transform: translate3d(11vw, 5vh, 0) scale(1.08);
+        opacity: 0.92;
+      }
+    }
+
+    @media (min-width: 620px) {
+      .content-wrap {
+        width: min(100% - 64px, var(--content-width));
+      }
+
+      .site-header {
+        padding-top: 66px;
+      }
+
+      .header-inner {
+        grid-template-columns: 1fr auto;
+        gap: 48px;
+      }
+
+      .screen-control {
+        align-self: end;
+      }
+
+      .note-card,
+      .breathing-card {
+        padding: 32px;
+      }
+
+      .note-copy p {
+        font-size: 1.04rem;
+      }
+
+      .thought-box {
+        grid-template-columns: minmax(170px, 0.45fr) 1fr;
+        align-items: center;
+      }
+
+      .thought-result {
+        text-align: left;
+      }
+
+      .memories-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .site-header {
+        padding-bottom: 50px;
+      }
+
+      .content-section + .content-section {
+        margin-top: 90px;
+      }
+
+      .note-card {
+        padding: 36px 40px;
+      }
+
+      .note-copy {
+        gap: 27px;
+      }
+
+      .breathing-card {
+        grid-template-columns: 0.9fr 1.1fr;
+        align-items: center;
+        min-height: 370px;
+        text-align: left;
+      }
+
+      .breathing-card .section-heading,
+      .breathing-card .breathing-intro {
+        grid-column: 1;
+      }
+
+      .breathing-card .section-heading {
+        margin-bottom: -16px;
+      }
+
+      .breath-stage {
+        grid-column: 2;
+        grid-row: 1 / span 3;
+      }
+
+      .breath-label {
+        grid-column: 1;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .note-copy p,
+      .memory-card {
+        opacity: 1;
+        transform: none;
+      }
+
+      .breath-orb {
+        transform: scale(0.82);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell" id="page-shell">
+    <header class="site-header">
+      <div class="content-wrap header-inner">
+        <div class="header-main">
+          <div class="title-line">
+            <svg class="moon-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+              <path class="moon" d="M43.8 10.5c-2.3 1.5-4.6 3.8-6.1 6.8-4.5 8.7-1.1 19.4 7.6 23.9 3.5 1.8 7.4 2.3 11 1.5-3.3 5.6-9.5 9.3-16.5 9.3-10.6 0-19.2-8.6-19.2-19.2S29.2 14 39.8 14c1.4 0 2.7.2 4 .5Z"></path>
+              <circle class="star" cx="14" cy="17" r="2.1"></circle>
+              <circle class="star" cx="51.5" cy="12.5" r="1.4"></circle>
+              <circle class="star" cx="10.5" cy="35.5" r="1.1"></circle>
+            </svg>
+            <h1 id="page-title"></h1>
+          </div>
+          <p class="subtitle" id="page-subtitle"></p>
+        </div>
+
+        <div class="screen-control">
+          <label for="dim-range">dim the screen</label>
+          <div class="range-wrap">
+             <input id="dim-range" type="range" min="0" max="0.62" step="0.01" value="0.18">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrap" id="main-content" tabindex="-1">
+      <section class="content-section" aria-labelledby="note-heading">
+        <div class="section-heading">
+          <p class="section-label" id="note-label"></p>
+          <h2 id="note-heading"></h2>
+        </div>
+        <div class="note-card note-copy" id="note-copy"></div>
+      </section>
+
+      <section class="content-section" aria-labelledby="breathing-heading">
+        <div class="breathing-card">
+          <div class="section-heading">
+            <p class="section-label" id="breathing-label"></p>
+            <h2 id="breathing-heading"></h2>
+          </div>
+          <div class="breath-stage" aria-hidden="true">
+            <div class="breath-orb"></div>
+          </div>
+          <p class="breath-label" id="breath-label" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="checklist-heading">
+        <div class="section-heading">
+          <p class="section-label" id="checklist-label"></p>
+          <h2 id="checklist-heading"></h2>
+        </div>
+        <ul class="checklist" id="checklist"></ul>
+        <p class="helper-line" id="checklist-helper"></p>
+      </section>
+
+      <section class="content-section" aria-labelledby="thought-heading">
+        <div class="section-heading">
+          <p class="section-label" id="thought-label"></p>
+          <h2 id="thought-heading"></h2>
+        </div>
+        <div class="thought-box">
+          <button class="thought-button" id="thought-button" type="button"></button>
+          <p class="thought-result" id="thought-result" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="memories-heading">
+        <div class="section-heading">
+          <h2 id="memories-heading"></h2>
+        </div>
+        <div class="memories-grid" id="memories-grid"></div>
+      </section>
+
+      <section class="content-section sleep-section" aria-labelledby="sleep-heading">
+        <div class="section-heading">
+          <p class="section-label" id="sleep-label"></p>
+          <h2 id="sleep-heading"></h2>
+        </div>
+        <button class="sleep-button" id="sleep-button" type="button" aria-pressed="false"></button>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="content-wrap">
+        <p id="footer-copy"></p>
+      </div>
+    </footer>
+  </div>
+
+  <div class="dim-layer" id="dim-layer" aria-hidden="true"></div>
+
+  <div class="sleep-overlay" id="sleep-overlay" role="dialog" aria-modal="true" aria-labelledby="sleep-message" aria-hidden="true" tabindex="-1">
+    <div class="sleep-glow" aria-hidden="true"></div>
+    <p class="sleep-message" id="sleep-message"></p>
+  </div>
+
+  <script>
+    const CONFIG = {
+      name: "Manee",
+      title: "Quiet Hours",
+      subtitle: "made only for you, Manee",
+      footer: "i'm here 🤍",
+
+      note: [
+        "hello manee, i made this website for you only. like phle sai bana kr rkh li hai, shyd need bhi na pade iski, but still just to have a safety measure 🫶",
+        "so anyways, if i sent you this you must not be good rn and i just want to say manee, brighten up love. even i look better than you rn yk why? bcos you're missing your most adorable thing, YOUR SMILE. you don't have to smile right now, but whenever you're ready, i'm waiting for it.",
+        "ik this won't be able to do much but manee i am here with you. MAI SAATH HU TERE. i am hugging you okay, i hope my warmth reaches you there. pls don't be sad cutie, smile and smile bright yrr.",
+        "no need to reply to this, just rest. abhi toh itna hi aa rha dimaag mai, maybe jab time aaye tab aur likh paoo...."
+      ],
+
+      smileMemories: [
+        "lol remember i kissed your hand when we were at Humayun's Tomb? omg sometimes i am just so not me, my romantic personality really took over. whatever, why did i write this idk, thought hassi aayegi tujhe 😭",
+        "more coming soon 🌸",
+        "more coming soon 🌸",
+        "more coming soon 🌸"
+      ],
+
+      gentleThoughts: [
+        "you don't have to be productive today",
+        "this will pass, and you're not alone",
+        "rest is enough for today",
+        "nothing is expected from you right now",
+        "be soft with yourself",
+        "someone is thinking of you right now 🤍"
+      ],
+
+      checklist: [
+        "sip some water 💧",
+        "cool cloth on forehead or neck",
+        "lower the lights",
+        "unclench your jaw and shoulders",
+        "rest your eyes for a bit"
+      ],
+
+      // Small interface labels live here too, so every visible phrase is easy to edit.
+      labels: {
+        dimScreen: "dim the screen",
+        note: "personal note",
+        breathing: "a soft pause",
+        breatheIn: "breathe in",
+        breatheOut: "breathe out",
+        checklist: "small comforts",
+        checklistHelper: "no pressure, just reminders",
+        thought: "for this moment",
+        gentleThought: "a gentle thought",
+        memories: "things that make you smile 🌸",
+        sleep: "when you're ready",
+        sleepButton: "i'm ready to sleep",
+        sleepMessage: "sleep well, manee",
+        placeholder: "more coming soon 🌸"
+      }
+    };
+
+    const $ = (selector) => document.querySelector(selector);
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    document.title = `${CONFIG.title} — ${CONFIG.name}`;
+    $("#page-title").textContent = CONFIG.title;
+    $("#page-subtitle").textContent = CONFIG.subtitle;
+    $("#footer-copy").textContent = CONFIG.footer;
+    $("#dim-range").setAttribute("aria-label", CONFIG.labels.dimScreen);
+
+    $("#note-label").textContent = CONFIG.labels.note;
+    $("#note-heading").textContent = CONFIG.name;
+    $("#breathing-label").textContent = CONFIG.labels.breathing;
+    $("#breathing-heading").textContent = CONFIG.labels.breatheIn;
+    $("#checklist-label").textContent = CONFIG.labels.checklist;
+    $("#checklist-heading").textContent = CONFIG.name;
+    $("#checklist-helper").textContent = CONFIG.labels.checklistHelper;
+    $("#thought-label").textContent = CONFIG.labels.thought;
+    $("#thought-heading").textContent = CONFIG.name;
+    $("#thought-button").textContent = CONFIG.labels.gentleThought;
+    $("#memories-heading").textContent = CONFIG.labels.memories;
+    $("#sleep-label").textContent = CONFIG.labels.sleep;
+    $("#sleep-heading").textContent = CONFIG.name;
+    $("#sleep-button").textContent = CONFIG.labels.sleepButton;
+    $("#sleep-message").textContent = CONFIG.labels.sleepMessage;
+
+    const noteCopy = $("#note-copy");
+    CONFIG.note.forEach((paragraph, index) => {
+      const element = document.createElement("p");
+      element.style.setProperty("--note-delay", `${index * 1.5}s`);
+      element.textContent = paragraph;
+      noteCopy.append(element);
+    });
+
+    const checklist = $("#checklist");
+    CONFIG.checklist.forEach((item, index) => {
+      const listItem = document.createElement("li");
+      const label = document.createElement("label");
+      const input = document.createElement("input");
+      const checkBox = document.createElement("span");
+      const copy = document.createElement("span");
+
+      input.type = "checkbox";
+      input.id = `check-${index + 1}`;
+      input.setAttribute("aria-label", item);
+      checkBox.className = "check-box";
+      checkBox.setAttribute("aria-hidden", "true");
+      copy.className = "check-text";
+      copy.textContent = item;
+      label.className = "check-item";
+      label.htmlFor = input.id;
+
+      label.append(input, checkBox, copy);
+      listItem.append(label);
+      checklist.append(listItem);
+    });
+
+    const memoriesGrid = $("#memories-grid");
+    CONFIG.smileMemories.forEach((memory, index) => {
+      const card = document.createElement("article");
+      card.className = "memory-card";
+      card.style.setProperty("--reveal-delay", `${index * 90}ms`);
+      card.textContent = memory;
+      if (memory === CONFIG.labels.placeholder) {
+        card.classList.add("placeholder");
+      }
+      memoriesGrid.append(card);
+    });
+
+    const dimRange = $("#dim-range");
+    const updateDim = () => {
+      document.documentElement.style.setProperty("--dim-opacity", dimRange.value);
+      dimRange.setAttribute("aria-valuetext", `${Math.round(Number(dimRange.value) * 100)}% ${CONFIG.labels.dimScreen}`);
+    };
+    dimRange.addEventListener("input", updateDim);
+    updateDim();
+
+    const breathLabel = $("#breath-label");
+    const breathStart = performance.now();
+    const updateBreathLabel = () => {
+      const elapsed = (performance.now() - breathStart) % 10000;
+      breathLabel.textContent = elapsed < 4000 ? CONFIG.labels.breatheIn : CONFIG.labels.breatheOut;
+    };
+    updateBreathLabel();
+    if (!prefersReducedMotion) {
+      window.setInterval(updateBreathLabel, 250);
+    }
+
+    const thoughtButton = $("#thought-button");
+    const thoughtResult = $("#thought-result");
+    let previousThoughtIndex = -1;
+    thoughtButton.addEventListener("click", () => {
+      let nextIndex = Math.floor(Math.random() * CONFIG.gentleThoughts.length);
+      if (CONFIG.gentleThoughts.length > 1 && nextIndex === previousThoughtIndex) {
+        nextIndex = (nextIndex + 1) % CONFIG.gentleThoughts.length;
+      }
+      previousThoughtIndex = nextIndex;
+      thoughtResult.classList.remove("is-visible");
+      window.setTimeout(() => {
+        thoughtResult.textContent = CONFIG.gentleThoughts[nextIndex];
+        thoughtResult.classList.add("is-visible");
+      }, prefersReducedMotion ? 0 : 80);
+    });
+
+    const memoryCards = [...document.querySelectorAll(".memory-card")];
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      memoryCards.forEach((card) => card.classList.add("is-visible"));
+    } else {
+      const memoryObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16, rootMargin: "0px 0px -30px" });
+      memoryCards.forEach((card) => memoryObserver.observe(card));
+    }
+
+    const pageShell = $("#page-shell");
+    const sleepButton = $("#sleep-button");
+    const sleepOverlay = $("#sleep-overlay");
+    let sleeping = false;
+
+    const enterSleep = () => {
+      if (sleeping) return;
+      sleeping = true;
+      pageShell.classList.add("sleeping");
+      sleepOverlay.classList.add("is-active");
+      sleepOverlay.setAttribute("aria-hidden", "false");
+      sleepButton.setAttribute("aria-pressed", "true");
+      sleepOverlay.focus({ preventScroll: true });
+    };
+
+    const exitSleep = () => {
+      if (!sleeping) return;
+      sleeping = false;
+      sleepOverlay.classList.remove("is-active");
+      pageShell.classList.remove("sleeping");
+      sleepOverlay.setAttribute("aria-hidden", "true");
+      sleepButton.setAttribute("aria-pressed", "false");
+      sleepButton.focus({ preventScroll: true });
+    };
+
+    sleepButton.addEventListener("click", enterSleep);
+    sleepOverlay.addEventListener("click", exitSleep);
+    document.addEventListener("keydown", (event) => {
+      if (sleeping) {
+        event.preventDefault();
+        exitSleep();
+      }
+    });
+  </script>
+</body>
+</html>
