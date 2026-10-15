@@ -159,16 +159,16 @@
 
      .title-line {
        display: flex;
-       gap: 18px;
+       gap: 14px;
        align-items: center;
      }
 
-    .moon-mark {
-      flex: 0 0 auto;
-      width: 58px;
-      height: 58px;
-      filter: drop-shadow(0 0 16px rgb(185 168 216 / 0.28));
-    }
+     .moon-mark {
+       flex: 0 0 auto;
+       width: 42px;
+       height: 42px;
+       filter: drop-shadow(0 0 16px rgb(185 168 216 / 0.28));
+     }
 
     .moon-mark .moon {
       fill: var(--lavender-bright);
@@ -320,22 +320,29 @@
       gap: 23px;
     }
 
-    .note-copy p {
-      color: var(--text-muted);
-      font-size: 1rem;
-      font-weight: 500;
-      overflow-wrap: anywhere;
-      opacity: 0;
-      transform: translateY(9px);
-      animation: note-in 0.9s var(--ease-soft) forwards;
-      animation-delay: var(--note-delay);
-    }
+     .note-copy p {
+       color: var(--text-muted);
+       font-size: 1.1rem;
+       font-weight: 500;
+       line-height: 1.78;
+       overflow-wrap: anywhere;
+       opacity: 0;
+       transform: translateY(9px);
+       animation: note-in 0.9s var(--ease-soft) forwards;
+       animation-delay: var(--note-delay);
+     }
 
-    .breathing-card {
-      display: grid;
-      gap: 26px;
-      padding: 27px 22px 25px;
-      text-align: center;
+     .phrase-highlight {
+       color: var(--amber-soft);
+       font-weight: 700;
+       text-shadow: 0 0 18px rgb(239 188 118 / 0.16);
+     }
+
+     .breathing-card {
+       display: grid;
+       gap: 26px;
+       padding: 27px 22px 25px;
+       text-align: center;
     }
 
     .breathing-intro {
@@ -346,26 +353,27 @@
       font-weight: 500;
     }
 
-    .breath-stage {
-      display: grid;
-      min-height: 220px;
-      place-items: center;
-    }
+     .breath-stage {
+       display: grid;
+       min-height: 250px;
+       place-items: center;
+     }
 
-    .breath-orb {
-      display: grid;
-      width: min(50vw, 190px);
-      aspect-ratio: 1;
-      place-items: center;
-      border: 1px solid rgb(239 188 118 / 0.55);
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 35% 30%, rgb(245 211 157 / 0.74), transparent 12%),
-        radial-gradient(circle, rgb(185 168 216 / 0.48), rgb(112 92 153 / 0.24) 55%, rgb(239 188 118 / 0.08) 70%, transparent 71%);
-      box-shadow: 0 0 0 14px rgb(185 168 216 / 0.055), 0 0 50px rgb(185 168 216 / 0.24), inset 0 0 25px rgb(255 238 210 / 0.1);
-      transform: scale(0.72);
-      animation: breathe 10s ease-in-out infinite;
-    }
+     .breath-orb {
+       position: relative;
+       display: grid;
+       width: clamp(180px, 60vw, 210px);
+       aspect-ratio: 1;
+       place-items: center;
+       border: 1px solid rgb(239 188 118 / 0.68);
+       border-radius: 50%;
+       background:
+         radial-gradient(circle at 35% 30%, rgb(245 211 157 / 0.74), transparent 12%),
+         radial-gradient(circle, rgb(185 168 216 / 0.48), rgb(112 92 153 / 0.24) 55%, rgb(239 188 118 / 0.08) 70%, transparent 71%);
+       box-shadow: 0 0 0 16px rgb(185 168 216 / 0.065), 0 0 62px rgb(185 168 216 / 0.3), inset 0 0 28px rgb(255 238 210 / 0.13);
+       transform: scale(0.72);
+       animation: breathe 10s ease-in-out infinite;
+     }
 
     .breath-orb::after {
       width: 24%;
@@ -377,13 +385,24 @@
       opacity: 0.72;
     }
 
-    .breath-label {
-      margin-top: -5px;
-      color: var(--amber-soft);
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
+     .breath-label {
+       position: absolute;
+       inset: 0;
+       z-index: 2;
+       display: grid;
+       margin: 0;
+       place-items: center;
+       color: var(--amber-soft);
+       font-size: 1.02rem;
+       font-weight: 700;
+       letter-spacing: 0.04em;
+       opacity: 1;
+       transition: opacity 430ms ease;
+     }
+
+     .breath-label.is-changing {
+       opacity: 0;
+     }
 
     .checklist {
       display: grid;
@@ -428,24 +447,24 @@
       opacity: 0;
     }
 
-    .check-box {
-      display: grid;
-      flex: 0 0 44px;
-      width: 44px;
-      height: 44px;
-      margin-right: 13px;
-      place-items: center;
-      border: 1px solid rgb(216 202 240 / 0.38);
-      border-radius: 14px;
-      background: rgb(255 255 255 / 0.025);
-      transition: border-color 260ms ease, background-color 260ms ease, transform 260ms var(--ease-soft);
-    }
+     .check-box {
+       display: grid;
+       flex: 0 0 32px;
+       width: 32px;
+       height: 32px;
+       margin-right: 12px;
+       place-items: center;
+       border: 1px solid rgb(216 202 240 / 0.38);
+       border-radius: 10px;
+       background: rgb(255 255 255 / 0.025);
+       transition: border-color 260ms ease, background-color 260ms ease, transform 260ms var(--ease-soft);
+     }
 
-    .check-box::after {
-      width: 10px;
-      height: 18px;
-      border-right: 2px solid var(--charcoal);
-      border-bottom: 2px solid var(--charcoal);
+     .check-box::after {
+       width: 8px;
+       height: 14px;
+       border-right: 2px solid var(--charcoal);
+       border-bottom: 2px solid var(--charcoal);
       content: "";
       opacity: 0;
       transform: translateY(-2px) rotate(40deg) scale(0.55);
@@ -501,14 +520,18 @@
       transition: background-color 220ms ease, box-shadow 220ms ease, transform 220ms var(--ease-soft);
     }
 
-    .thought-button {
-      background: var(--lavender-bright);
-      box-shadow: 0 10px 25px rgb(185 168 216 / 0.12);
-    }
+     .thought-button {
+       color: var(--text-muted);
+       background: rgb(185 168 216 / 0.16);
+       border: 1px solid rgb(216 202 240 / 0.2);
+       box-shadow: none;
+     }
 
-    .thought-button:hover {
-      background: #e4d8f5;
-      box-shadow: 0 14px 28px rgb(185 168 216 / 0.2);
+     .thought-button:hover {
+       color: var(--text);
+       background: rgb(185 168 216 / 0.22);
+       border-color: rgb(216 202 240 / 0.3);
+       box-shadow: none;
     }
 
     .thought-button:active,
@@ -569,12 +592,20 @@
       padding-bottom: 67px;
     }
 
-    .sleep-button {
-      color: var(--text);
-      background: rgb(185 168 216 / 0.12);
-      border: 1px solid rgb(216 202 240 / 0.3);
-      box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
-    }
+     .sleep-button {
+       gap: 10px;
+       color: var(--text);
+       background: rgb(185 168 216 / 0.12);
+       border: 1px solid rgb(216 202 240 / 0.3);
+       box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+     }
+
+     .sleep-moon {
+       width: 20px;
+       height: 20px;
+       fill: var(--amber-soft);
+       filter: drop-shadow(0 0 10px rgb(239 188 118 / 0.2));
+     }
 
     .sleep-button:hover {
       background: rgb(185 168 216 / 0.2);
@@ -687,37 +718,35 @@
         padding-top: 66px;
       }
 
-      .header-inner {
-        grid-template-columns: 1fr auto;
-        gap: 48px;
-      }
+       .header-inner {
+         grid-template-columns: 1fr;
+         gap: 24px;
+       }
 
-      .screen-control {
-        align-self: end;
-      }
+       .screen-control {
+         align-self: stretch;
+       }
 
       .note-card,
       .breathing-card {
         padding: 32px;
       }
 
-      .note-copy p {
-        font-size: 1.04rem;
-      }
+       .note-copy p {
+         font-size: 1.1rem;
+       }
 
-      .thought-box {
-        grid-template-columns: minmax(170px, 0.45fr) 1fr;
-        align-items: center;
-      }
+       .thought-box {
+         grid-template-columns: 1fr;
+       }
 
-      .thought-result {
-        text-align: left;
-      }
+       .thought-result {
+         text-align: center;
+       }
 
-      .memories-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
+       .memories-grid {
+         gap: 16px;
+       }
     }
 
     @media (min-width: 900px) {
@@ -737,30 +766,11 @@
         gap: 27px;
       }
 
-      .breathing-card {
-        grid-template-columns: 0.9fr 1.1fr;
-        align-items: center;
-        min-height: 370px;
-        text-align: left;
-      }
-
-      .breathing-card .section-heading,
-      .breathing-card .breathing-intro {
-        grid-column: 1;
-      }
-
-      .breathing-card .section-heading {
-        margin-bottom: -16px;
-      }
-
-      .breath-stage {
-        grid-column: 2;
-        grid-row: 1 / span 3;
-      }
-
-      .breath-label {
-        grid-column: 1;
-      }
+       .breathing-card {
+         grid-template-columns: 1fr;
+         min-height: 0;
+         text-align: center;
+       }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -802,7 +812,7 @@
             </svg>
             <h1 id="page-title"></h1>
           </div>
-          <p class="subtitle" id="page-subtitle"></p>
+           <p class="greeting" id="page-greeting"></p>
         </div>
 
         <div class="screen-control">
@@ -817,8 +827,7 @@
     <main class="content-wrap" id="main-content" tabindex="-1">
       <section class="content-section" aria-labelledby="note-heading">
         <div class="section-heading">
-          <p class="section-label" id="note-label"></p>
-          <h2 id="note-heading"></h2>
+           <h2 id="note-heading"></h2>
         </div>
         <div class="note-card note-copy" id="note-copy"></div>
       </section>
@@ -826,20 +835,19 @@
       <section class="content-section" aria-labelledby="breathing-heading">
         <div class="breathing-card">
           <div class="section-heading">
-            <p class="section-label" id="breathing-label"></p>
-            <h2 id="breathing-heading"></h2>
+             <h2 id="breathing-heading"></h2>
           </div>
-          <div class="breath-stage" aria-hidden="true">
-            <div class="breath-orb"></div>
-          </div>
-          <p class="breath-label" id="breath-label" aria-live="polite"></p>
-        </div>
+           <div class="breath-stage">
+             <div class="breath-orb">
+               <span class="breath-label" id="breath-label" aria-live="polite"></span>
+             </div>
+           </div>
+         </div>
       </section>
 
       <section class="content-section" aria-labelledby="checklist-heading">
         <div class="section-heading">
-          <p class="section-label" id="checklist-label"></p>
-          <h2 id="checklist-heading"></h2>
+           <h2 id="checklist-heading"></h2>
         </div>
         <ul class="checklist" id="checklist"></ul>
         <p class="helper-line" id="checklist-helper"></p>
@@ -847,8 +855,7 @@
 
       <section class="content-section" aria-labelledby="thought-heading">
         <div class="section-heading">
-          <p class="section-label" id="thought-label"></p>
-          <h2 id="thought-heading"></h2>
+           <h2 id="thought-heading"></h2>
         </div>
         <div class="thought-box">
           <button class="thought-button" id="thought-button" type="button"></button>
@@ -865,10 +872,14 @@
 
       <section class="content-section sleep-section" aria-labelledby="sleep-heading">
         <div class="section-heading">
-          <p class="section-label" id="sleep-label"></p>
-          <h2 id="sleep-heading"></h2>
+           <h2 id="sleep-heading"></h2>
         </div>
-        <button class="sleep-button" id="sleep-button" type="button" aria-pressed="false"></button>
+         <button class="sleep-button" id="sleep-button" type="button" aria-pressed="false">
+           <svg class="sleep-moon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+             <path d="M22.4 5.4a10.3 10.3 0 1 0 4.2 19.3A11.8 11.8 0 1 1 22.4 5.4Z"></path>
+           </svg>
+           <span id="sleep-button-label"></span>
+         </button>
       </section>
     </main>
 
@@ -888,10 +899,11 @@
 
   <script>
     const CONFIG = {
-      name: "Manee",
-      title: "Quiet Hours",
-      subtitle: "made only for you, Manee",
-      footer: "i'm here 🤍",
+       name: "Manee",
+       title: "Quiet Hours",
+       subtitle: "made only for you, Manee",
+       greeting: "hi manee 🤍",
+       footer: "i'm here 🤍",
 
       note: [
         "hello manee, i made this website for you only. like phle sai bana kr rkh li hai, shyd need bhi na pade iski, but still just to have a safety measure 🫶",
@@ -924,8 +936,9 @@
         "rest your eyes for a bit"
       ],
 
-      // Small interface labels live here too, so every visible phrase is easy to edit.
-      labels: {
+       // Small interface labels live here too, so every visible phrase is easy to edit.
+       highlightPhrases: ["YOUR SMILE", "MAI SAATH HU TERE"],
+       labels: {
         dimScreen: "dim the screen",
         note: "personal note",
         breathing: "a soft pause",
@@ -946,35 +959,41 @@
     const $ = (selector) => document.querySelector(selector);
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    document.title = `${CONFIG.title} — ${CONFIG.name}`;
-    $("#page-title").textContent = CONFIG.title;
-    $("#page-subtitle").textContent = CONFIG.subtitle;
-    $("#footer-copy").textContent = CONFIG.footer;
-    $("#dim-range").setAttribute("aria-label", CONFIG.labels.dimScreen);
+     document.title = CONFIG.title;
+     $("#page-title").textContent = CONFIG.title;
+     $("#page-greeting").textContent = CONFIG.greeting;
+     $("#footer-copy").textContent = CONFIG.footer;
+     $("#dim-range").setAttribute("aria-label", CONFIG.labels.dimScreen);
 
-    $("#note-label").textContent = CONFIG.labels.note;
-    $("#note-heading").textContent = CONFIG.name;
-    $("#breathing-label").textContent = CONFIG.labels.breathing;
-    $("#breathing-heading").textContent = CONFIG.labels.breatheIn;
-    $("#checklist-label").textContent = CONFIG.labels.checklist;
-    $("#checklist-heading").textContent = CONFIG.name;
-    $("#checklist-helper").textContent = CONFIG.labels.checklistHelper;
-    $("#thought-label").textContent = CONFIG.labels.thought;
-    $("#thought-heading").textContent = CONFIG.name;
-    $("#thought-button").textContent = CONFIG.labels.gentleThought;
-    $("#memories-heading").textContent = CONFIG.labels.memories;
-    $("#sleep-label").textContent = CONFIG.labels.sleep;
-    $("#sleep-heading").textContent = CONFIG.name;
-    $("#sleep-button").textContent = CONFIG.labels.sleepButton;
-    $("#sleep-message").textContent = CONFIG.labels.sleepMessage;
+     $("#note-heading").textContent = CONFIG.labels.note;
+     $("#breathing-heading").textContent = CONFIG.labels.breathing;
+     $("#checklist-heading").textContent = CONFIG.labels.checklist;
+     $("#checklist-helper").textContent = CONFIG.labels.checklistHelper;
+     $("#thought-heading").textContent = CONFIG.labels.thought;
+     $("#thought-button").textContent = CONFIG.labels.gentleThought;
+     $("#memories-heading").textContent = CONFIG.labels.memories;
+     $("#sleep-heading").textContent = CONFIG.labels.sleep;
+     $("#sleep-button-label").textContent = CONFIG.labels.sleepButton;
+     $("#sleep-message").textContent = CONFIG.labels.sleepMessage;
 
-    const noteCopy = $("#note-copy");
-    CONFIG.note.forEach((paragraph, index) => {
-      const element = document.createElement("p");
-      element.style.setProperty("--note-delay", `${index * 1.5}s`);
-      element.textContent = paragraph;
-      noteCopy.append(element);
-    });
+     const noteCopy = $("#note-copy");
+     const highlightPattern = new RegExp(`(${CONFIG.highlightPhrases.join("|")})`, "g");
+     CONFIG.note.forEach((paragraph, index) => {
+       const element = document.createElement("p");
+       element.style.setProperty("--note-delay", `${index * 1.5}s`);
+       let cursor = 0;
+       paragraph.replace(highlightPattern, (match, _capture, offset) => {
+         element.append(document.createTextNode(paragraph.slice(cursor, offset)));
+         const highlight = document.createElement("span");
+         highlight.className = "phrase-highlight";
+         highlight.textContent = match;
+         element.append(highlight);
+         cursor = offset + match.length;
+         return match;
+       });
+       element.append(document.createTextNode(paragraph.slice(cursor)));
+       noteCopy.append(element);
+     });
 
     const checklist = $("#checklist");
     CONFIG.checklist.forEach((item, index) => {
@@ -997,19 +1016,21 @@
       label.append(input, checkBox, copy);
       listItem.append(label);
       checklist.append(listItem);
-    });
+     });
 
-    const memoriesGrid = $("#memories-grid");
-    CONFIG.smileMemories.forEach((memory, index) => {
-      const card = document.createElement("article");
-      card.className = "memory-card";
-      card.style.setProperty("--reveal-delay", `${index * 90}ms`);
-      card.textContent = memory;
-      if (memory === CONFIG.labels.placeholder) {
-        card.classList.add("placeholder");
-      }
-      memoriesGrid.append(card);
-    });
+     const memoriesGrid = $("#memories-grid");
+     const memoriesSection = document.querySelector('[aria-labelledby="memories-heading"]');
+     const realMemories = CONFIG.smileMemories.filter((memory) => memory !== CONFIG.labels.placeholder);
+     realMemories.forEach((memory, index) => {
+       const card = document.createElement("article");
+       card.className = "memory-card";
+       card.style.setProperty("--reveal-delay", `${index * 90}ms`);
+       card.textContent = memory;
+       memoriesGrid.append(card);
+     });
+     if (realMemories.length === 0) {
+       memoriesSection.hidden = true;
+     }
 
     const dimRange = $("#dim-range");
     const updateDim = () => {
@@ -1017,14 +1038,28 @@
       dimRange.setAttribute("aria-valuetext", `${Math.round(Number(dimRange.value) * 100)}% ${CONFIG.labels.dimScreen}`);
     };
     dimRange.addEventListener("input", updateDim);
-    updateDim();
+     updateDim();
 
-    const breathLabel = $("#breath-label");
-    const breathStart = performance.now();
-    const updateBreathLabel = () => {
-      const elapsed = (performance.now() - breathStart) % 10000;
-      breathLabel.textContent = elapsed < 4000 ? CONFIG.labels.breatheIn : CONFIG.labels.breatheOut;
-    };
+     const breathLabel = $("#breath-label");
+     const breathStart = performance.now();
+     let lastBreathPhase = "";
+     let breathFadeTimer;
+     const updateBreathLabel = () => {
+       const elapsed = (performance.now() - breathStart) % 10000;
+       const nextPhase = elapsed < 4000 ? "breatheIn" : "breatheOut";
+       if (nextPhase === lastBreathPhase) return;
+       lastBreathPhase = nextPhase;
+       window.clearTimeout(breathFadeTimer);
+       if (prefersReducedMotion) {
+         breathLabel.textContent = CONFIG.labels[nextPhase];
+         return;
+       }
+       breathLabel.classList.add("is-changing");
+       breathFadeTimer = window.setTimeout(() => {
+         breathLabel.textContent = CONFIG.labels[nextPhase];
+         breathLabel.classList.remove("is-changing");
+       }, 220);
+     };
     updateBreathLabel();
     if (!prefersReducedMotion) {
       window.setInterval(updateBreathLabel, 250);
