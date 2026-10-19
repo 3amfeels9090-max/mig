@@ -496,6 +496,308 @@
       font-weight: 600;
     }
 
+     .medicine-groups {
+       display: grid;
+       gap: 18px;
+     }
+
+     .medicine-group {
+       display: grid;
+       gap: 10px;
+     }
+
+     .medicine-group-heading {
+       display: flex;
+       flex-wrap: wrap;
+       gap: 5px 10px;
+       align-items: baseline;
+       padding-inline: 4px;
+     }
+
+     .medicine-group-heading h3 {
+       margin: 0;
+       color: var(--text-muted);
+       font-size: 0.95rem;
+       font-weight: 700;
+       letter-spacing: -0.01em;
+     }
+
+     .medicine-group-heading span {
+       color: var(--text-soft);
+       font-size: 0.75rem;
+       font-weight: 600;
+       letter-spacing: 0.04em;
+     }
+
+     .medicine-list {
+       display: grid;
+       gap: 10px;
+       padding: 0;
+       margin: 0;
+       list-style: none;
+     }
+
+     .medicine-card {
+       display: grid;
+       grid-template-columns: minmax(0, 1fr);
+       gap: 14px;
+       padding: 15px;
+       border: 1px solid var(--line);
+       border-radius: var(--radius-md);
+       background: var(--surface-muted);
+       transition: border-color 220ms ease, background-color 220ms ease;
+     }
+
+     .medicine-card.is-taken {
+       border-color: rgb(239 188 118 / 0.35);
+       background: linear-gradient(145deg, rgb(55 50 65 / 0.88), rgb(31 32 47 / 0.86));
+     }
+
+     .medicine-card.is-sos {
+       border-color: rgb(239 188 118 / 0.24);
+     }
+
+     .medicine-card-main {
+       display: grid;
+       grid-template-columns: 12px minmax(0, 1fr);
+       gap: 11px;
+       align-items: start;
+       min-width: 0;
+     }
+
+     .medicine-status-dot {
+       width: 10px;
+       height: 10px;
+       margin-top: 7px;
+       border: 1px solid rgb(216 202 240 / 0.58);
+       border-radius: 50%;
+       background: transparent;
+     }
+
+     .medicine-status-dot.is-taken {
+       border-color: var(--amber-soft);
+       background: var(--amber-soft);
+       box-shadow: 0 0 0 3px rgb(239 188 118 / 0.1);
+     }
+
+     .medicine-status-dot.is-sos {
+       border-color: var(--amber-soft);
+       background: rgb(239 188 118 / 0.28);
+     }
+
+     .medicine-copy {
+       min-width: 0;
+     }
+
+     .medicine-name {
+       color: var(--text);
+       font-size: 1rem;
+       font-weight: 700;
+       overflow-wrap: anywhere;
+     }
+
+     .medicine-timing {
+       margin-top: 3px;
+       color: var(--text-muted);
+       font-size: 0.88rem;
+       font-weight: 500;
+       overflow-wrap: anywhere;
+     }
+
+     .medicine-status {
+       margin-top: 6px;
+       color: var(--text-soft);
+       font-size: 0.76rem;
+       font-weight: 600;
+     }
+
+     .medicine-card.is-taken .medicine-status {
+       color: var(--amber-soft);
+     }
+
+     .medicine-action,
+     .medicine-edit-toggle,
+     .medicine-save,
+     .medicine-cancel,
+     .medicine-undo {
+       display: inline-flex;
+       min-height: 44px;
+       align-items: center;
+       justify-content: center;
+       padding: 9px 14px;
+       border: 1px solid rgb(216 202 240 / 0.23);
+       border-radius: 999px;
+       color: var(--text-muted);
+       background: rgb(185 168 216 / 0.12);
+       font-size: 0.8rem;
+       font-weight: 700;
+       cursor: pointer;
+       transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease, transform 220ms var(--ease-soft);
+     }
+
+     .medicine-action {
+       width: 100%;
+     }
+
+     .medicine-action:hover,
+     .medicine-edit-toggle:hover,
+     .medicine-cancel:hover,
+     .medicine-undo:hover {
+       border-color: rgb(216 202 240 / 0.4);
+       color: var(--text);
+       background: rgb(185 168 216 / 0.2);
+     }
+
+     .medicine-action:active,
+     .medicine-edit-toggle:active,
+     .medicine-save:active,
+     .medicine-cancel:active,
+     .medicine-undo:active {
+       transform: scale(0.975);
+     }
+
+     .medicine-card.is-taken .medicine-action {
+       border-color: rgb(239 188 118 / 0.38);
+       color: var(--amber-soft);
+       background: rgb(239 188 118 / 0.12);
+     }
+
+     .medicine-tools {
+       display: grid;
+       gap: 14px;
+       margin-top: 17px;
+     }
+
+     .medicine-disclaimer {
+       color: var(--text-soft);
+       font-size: 0.82rem;
+       font-weight: 600;
+     }
+
+     .medicine-edit-toggle {
+       width: 100%;
+     }
+
+     .medicine-feedback {
+       display: flex;
+       flex-wrap: wrap;
+       gap: 9px 13px;
+       align-items: center;
+       min-height: 26px;
+       margin-top: 14px;
+       color: var(--amber-soft);
+       font-size: 0.82rem;
+       font-weight: 600;
+     }
+
+     .medicine-feedback:empty {
+       display: none;
+     }
+
+     .medicine-undo {
+       min-height: 38px;
+       padding: 6px 12px;
+       color: var(--amber-soft);
+       background: transparent;
+     }
+
+     .medicine-editor {
+       display: grid;
+       gap: 14px;
+       padding: 17px;
+       margin-top: 15px;
+       border: 1px solid rgb(185 168 216 / 0.24);
+       border-radius: var(--radius-lg);
+       background: linear-gradient(145deg, rgb(47 47 68 / 0.72), rgb(30 31 47 / 0.76));
+     }
+
+     .medicine-editor[hidden] {
+       display: none;
+     }
+
+     .medicine-editor-intro {
+       color: var(--text-muted);
+       font-size: 0.86rem;
+       font-weight: 500;
+     }
+
+     .medicine-editor-fields {
+       display: grid;
+       gap: 11px;
+     }
+
+     .medicine-edit-card {
+       display: grid;
+       gap: 7px;
+       min-width: 0;
+       padding: 13px;
+       margin: 0;
+       border: 1px solid var(--line);
+       border-radius: var(--radius-md);
+       background: rgb(24 25 39 / 0.5);
+     }
+
+     .medicine-edit-card legend {
+       max-width: 100%;
+       padding: 0 5px;
+       color: var(--amber-soft);
+       font-size: 0.78rem;
+       font-weight: 700;
+       letter-spacing: 0.04em;
+       overflow-wrap: anywhere;
+     }
+
+     .medicine-edit-card label {
+       color: var(--text-soft);
+       font-size: 0.76rem;
+       font-weight: 700;
+     }
+
+     .medicine-edit-card input[type="text"] {
+       width: 100%;
+       min-height: 46px;
+       padding: 9px 11px;
+       border: 1px solid rgb(216 202 240 / 0.22);
+       border-radius: 12px;
+       color: var(--text);
+       background: rgb(16 18 30 / 0.55);
+     }
+
+     .medicine-edit-card input[type="text"]::placeholder {
+       color: var(--text-soft);
+     }
+
+     .medicine-edit-card input[aria-invalid="true"] {
+       border-color: rgb(239 188 118 / 0.58);
+     }
+
+     .medicine-editor-actions {
+       display: grid;
+       gap: 10px;
+     }
+
+     .medicine-save {
+       border-color: rgb(239 188 118 / 0.48);
+       color: var(--charcoal);
+       background: var(--amber-soft);
+     }
+
+     .medicine-save:hover {
+       border-color: var(--amber-soft);
+       background: #f7ddb1;
+     }
+
+     .medicine-cancel {
+       background: transparent;
+     }
+
+     .medicine-editor-message {
+       min-height: 22px;
+       color: var(--amber-soft);
+       font-size: 0.78rem;
+       font-weight: 600;
+     }
+
     .thought-box {
       display: grid;
       gap: 17px;
@@ -550,14 +852,183 @@
       transition: opacity 500ms ease, transform 500ms var(--ease-soft);
     }
 
-    .thought-result.is-visible {
-      opacity: 1;
-      transform: none;
-    }
+     .thought-result.is-visible {
+       opacity: 1;
+       transform: none;
+     }
 
-    .memories-grid {
-      display: grid;
-      gap: 13px;
+      .comfort-section {
+        scroll-margin-top: 24px;
+      }
+
+      .comfort-entry {
+        padding: 18px;
+        border: 1px solid rgb(185 168 216 / 0.22);
+        border-radius: var(--radius-xl);
+        background: linear-gradient(145deg, rgb(57 48 76 / 0.56), rgb(31 31 48 / 0.78));
+      }
+
+      .comfort-open,
+      .comfort-close {
+        display: inline-flex;
+        width: 100%;
+        min-height: 52px;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 18px;
+        border: 1px solid rgb(216 202 240 / 0.26);
+        border-radius: 999px;
+        color: var(--text);
+        background: rgb(185 168 216 / 0.12);
+        font-size: 0.92rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease, transform 220ms var(--ease-soft);
+      }
+
+      .comfort-open:hover,
+      .comfort-close:hover {
+        border-color: rgb(216 202 240 / 0.42);
+        background: rgb(185 168 216 / 0.2);
+      }
+
+      .comfort-open:active,
+      .comfort-close:active {
+        transform: scale(0.98);
+      }
+
+      .comfort-panel {
+        display: grid;
+        gap: 22px;
+        padding: 24px 18px 19px;
+        border: 1px solid rgb(185 168 216 / 0.25);
+        border-radius: var(--radius-xl);
+        background: linear-gradient(145deg, rgb(47 45 68 / 0.9), rgb(29 30 47 / 0.9));
+        box-shadow: 0 24px 60px rgb(4 5 12 / 0.18), inset 0 1px 0 rgb(255 255 255 / 0.035);
+      }
+
+      .comfort-panel[hidden] {
+        display: none;
+      }
+
+      .comfort-panel-header {
+        display: grid;
+        gap: 10px;
+      }
+
+      .comfort-panel-title {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        color: var(--text);
+        font-size: clamp(1.35rem, 4vw, 1.8rem);
+      }
+
+      .comfort-panel-title::before {
+        width: 17px;
+        height: 17px;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        background: var(--lavender-bright);
+        box-shadow: 5px -3px 0 0 var(--surface-bright);
+        content: "";
+      }
+
+      .comfort-subtitle {
+        color: var(--text-muted);
+        font-size: 0.94rem;
+        font-weight: 500;
+      }
+
+      .comfort-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .comfort-letter {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: rgb(24 25 40 / 0.62);
+        transition: border-color 220ms ease, background-color 220ms ease;
+      }
+
+      .comfort-letter[open] {
+        border-color: rgb(239 188 118 / 0.34);
+        background: linear-gradient(145deg, rgb(55 48 69 / 0.76), rgb(27 28 44 / 0.78));
+      }
+
+      .comfort-question {
+        display: flex;
+        min-height: 58px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 13px 15px;
+        color: var(--text-muted);
+        font-size: 0.96rem;
+        font-weight: 700;
+        line-height: 1.45;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .comfort-question::-webkit-details-marker {
+        display: none;
+      }
+
+      .comfort-question::after {
+        flex: 0 0 auto;
+        color: var(--amber-soft);
+        content: "⌄";
+        font-size: 1.1rem;
+        line-height: 1;
+        transform: translateY(-2px);
+        transition: transform 220ms var(--ease-soft);
+      }
+
+      .comfort-letter[open] .comfort-question {
+        color: var(--text);
+      }
+
+      .comfort-letter[open] .comfort-question::after {
+        transform: rotate(180deg) translateY(-2px);
+      }
+
+      .comfort-letter:not([open]) .comfort-answer {
+        display: none;
+      }
+
+      .comfort-question:focus-visible {
+        position: relative;
+        z-index: 1;
+        outline: 3px solid var(--amber-soft);
+        outline-offset: -3px;
+      }
+
+      .comfort-answer {
+        display: grid;
+        gap: 15px;
+        padding: 0 15px 17px;
+        color: var(--text-muted);
+        font-size: 0.98rem;
+        font-weight: 500;
+        line-height: 1.78;
+        overflow-wrap: anywhere;
+      }
+
+      .comfort-answer p {
+        margin: 0;
+      }
+
+      .comfort-close {
+        color: var(--amber-soft);
+        background: transparent;
+      }
+
+     .memories-grid {
+       display: grid;
+       gap: 13px;
     }
 
     .memory-card {
@@ -744,6 +1215,20 @@
          text-align: center;
        }
 
+       .medicine-card {
+         grid-template-columns: minmax(0, 1fr) auto;
+         align-items: center;
+       }
+
+       .medicine-action {
+         width: auto;
+         min-width: 126px;
+       }
+
+       .medicine-editor-actions {
+         grid-template-columns: 1fr 1fr;
+       }
+
        .memories-grid {
          gap: 16px;
        }
@@ -853,19 +1338,54 @@
         <p class="helper-line" id="checklist-helper"></p>
       </section>
 
-      <section class="content-section" aria-labelledby="thought-heading">
-        <div class="section-heading">
-           <h2 id="thought-heading"></h2>
-        </div>
-        <div class="thought-box">
-          <button class="thought-button" id="thought-button" type="button"></button>
-          <p class="thought-result" id="thought-result" aria-live="polite"></p>
-        </div>
-      </section>
+       <section class="content-section medicine-section" aria-labelledby="medicine-heading">
+         <div class="section-heading">
+           <h2 id="medicine-heading"></h2>
+         </div>
+         <div class="medicine-groups" id="medicine-groups"></div>
+         <div class="medicine-tools">
+           <p class="medicine-disclaimer" id="medicine-disclaimer"></p>
+           <button class="medicine-edit-toggle" id="medicine-edit-toggle" type="button" aria-expanded="false" aria-controls="medicine-editor"></button>
+         </div>
+         <div class="medicine-feedback" id="medicine-feedback" role="status" aria-live="polite"></div>
+         <form class="medicine-editor" id="medicine-editor" aria-labelledby="medicine-editor-intro" hidden>
+           <p class="medicine-editor-intro" id="medicine-editor-intro"></p>
+           <div class="medicine-editor-fields" id="medicine-editor-fields"></div>
+           <div class="medicine-editor-actions">
+             <button class="medicine-save" id="medicine-save" type="submit"></button>
+             <button class="medicine-cancel" id="medicine-cancel" type="button"></button>
+           </div>
+           <p class="medicine-editor-message" id="medicine-editor-message" aria-live="polite"></p>
+         </form>
+       </section>
 
-      <section class="content-section" aria-labelledby="memories-heading">
-        <div class="section-heading">
-          <h2 id="memories-heading"></h2>
+       <section class="content-section" aria-labelledby="thought-heading">
+         <div class="section-heading">
+            <h2 id="thought-heading"></h2>
+         </div>
+         <div class="thought-box">
+           <button class="thought-button" id="thought-button" type="button"></button>
+           <p class="thought-result" id="thought-result" aria-live="polite"></p>
+         </div>
+       </section>
+
+       <section class="content-section comfort-section" aria-label="for the days you forget 🌙">
+         <div class="comfort-entry" id="comfort-entry">
+           <button class="comfort-open" id="comfort-open" type="button" aria-expanded="false" aria-controls="comfort-panel"></button>
+         </div>
+         <div class="comfort-panel" id="comfort-panel" hidden>
+           <div class="comfort-panel-header">
+             <h2 class="comfort-panel-title" id="comfort-heading"></h2>
+             <p class="comfort-subtitle" id="comfort-subtitle"></p>
+           </div>
+           <div class="comfort-list" id="comfort-list"></div>
+           <button class="comfort-close" id="comfort-close" type="button"></button>
+         </div>
+       </section>
+
+       <section class="content-section" aria-labelledby="memories-heading">
+         <div class="section-heading">
+           <h2 id="memories-heading"></h2>
         </div>
         <div class="memories-grid" id="memories-grid"></div>
       </section>
@@ -919,33 +1439,149 @@
         "more coming soon 🌸"
       ],
 
-      gentleThoughts: [
-        "you don't have to be productive today",
-        "this will pass, and you're not alone",
-        "rest is enough for today",
-        "nothing is expected from you right now",
-        "be soft with yourself",
-        "someone is thinking of you right now 🤍"
-      ],
+       gentleThoughts: [
+         "you don't have to be productive today",
+         "this will pass, and you're not alone",
+         "rest is enough for today",
+         "nothing is expected from you right now",
+         "be soft with yourself",
+         "someone is thinking of you right now 🤍"
+       ],
 
-      checklist: [
-        "sip some water 💧",
+       comfortingMessages: [
+         {
+           title: "some things you like about me 🌷",
+           answer: [
+             "You care a lot about your friends, sometimes even when you forget to take care of yourself. You notice little things, you try to make people feel loved, and you have a heart that keeps caring even when life gets difficult. I like how much you try, how deeply you feel things, and how you keep going even on days when it's hard. I hope someday you see yourself the way the people who love you see you. You really are so much more than you give yourself credit for."
+           ]
+         },
+         {
+           title: "why you shouldn't be disappointed in yourself 🌱",
+           answer: [
+             "Because you are genuinely a hardworking person, and I know how much you want to clear CA. Your journey isn't supposed to be perfect every single day. Some days you'll study for hours, some days you'll struggle to get through a single chapter, and both days are part of your journey. Remember, even the smallest progress counts. You don't have to prove your potential every day to still have it. You have what it takes to clear CA, and one bad day, one bad result, or one difficult phase cannot decide your entire future. Please give yourself the same patience you give everyone else."
+           ]
+         },
+         {
+           title: "why you shouldn't think of yourself as a failure 🪻",
+           answer: [
+             "Because you're a person who is still growing, not a final result on a marksheet. You are allowed to make mistakes, fall behind, change your plans, cry over things, and start again. Failure is something that can happen to you; it is not who you are. Life isn't a race where everyone has to reach the same place at the same time. You don't have to have everything figured out right now. Look at how far you've come, not just how far you still have to go. Please don't reduce your entire existence to a few things that didn't go your way."
+           ]
+         },
+         {
+           title: "why you shouldn't think that no one loves you 🤍",
+           answer: [
+             "I know there might be days when your mind makes you feel like you're alone, unwanted, or too much for everyone. But please don't mistake feeling unloved for being unlovable. Sometimes pain makes it difficult to see the people who care about us, and sometimes people fail to show their love in the ways we need. Neither means you don't deserve it. I care about you, even on your quiet days, your irritated days, your crying days, and the days when you don't feel like yourself. You don't have to be happy, productive, pretty, or strong to deserve love. And whenever you can't find enough reasons to love yourself, please don't decide that there are none."
+           ]
+         },
+         {
+           title: "a reminder that you'll be okay 🌙",
+           answer: [
+             "I can't promise that everything will suddenly become perfect or that you'll never have another difficult day. But I believe that your life can hold so much more than what you're feeling right now. There are people you haven't met yet, memories you haven't made yet, places you haven't seen yet, and ordinary little moments that will someday mean the world to you. You don't need to figure out your entire life tonight. Just take things one day, one hour, sometimes one breath at a time. A difficult chapter doesn't tell you how the whole book ends. Please stay long enough to discover what comes next. You deserve that chance."
+           ]
+         },
+         {
+           title: "why your thodi der ka chuda hua mood shouldn't convince you that sab kuch kharab hai 🫂",
+           answer: [
+             "Mani, listen to me for a second. Sometimes one bad thing happens, your mood drops, and suddenly your mind starts bringing up every other thing that's wrong. One disappointment becomes proof that you're a disappointment. One lonely evening becomes proof that nobody loves you. One difficult day makes the future look completely hopeless. But feelings, however real they are, don't always tell the whole truth.",
+             "You don't have to solve every problem just because your brain brings them all up at once. You don't need to decide what your whole life means while you're hurting. And if the pain ever gets so bad that you start thinking about ending your life, please tell someone immediately. Call me, call someone you trust, or ask someone to stay with you. You don't have to make yourself feel better before asking for help.",
+             "Please don't hurt yourself for having a hard time. You aren't a burden for struggling, and you don't have to handle those moments alone. I would rather you call me a hundred times, cry, say nothing, or tell me that you aren't okay than have you believe you have to disappear to make the pain stop. We can take the next few minutes together. You don't have to figure out forever right now. ❤️"
+           ]
+         },
+         {
+           title: "why you should get back to work 📚",
+           answer: [
+             "Not because you need to be productive to deserve good things, and definitely not because resting is a waste of time. But because I know you have dreams, and I don't want a difficult phase to convince you to give up on the life you're trying to build.",
+             "You don't need to come back with a perfect timetable and suddenly become the most disciplined person alive. Open your book. Read one page. Solve one question. Study for ten minutes if that's all you can manage today. Small steps count, too. And if you're genuinely exhausted, rest and try again when you're ready.",
+             "Remember why you started. Remember the version of yourself you're working towards. You can take breaks without giving up, struggle without being a failure, and have a bad day without losing your future. You don't have to do everything today, Mani. Just don't stop believing that your efforts are worth something. One small step at a time, okay? I'm rooting for you. Always. 🫶"
+           ]
+         }
+       ],
+
+       checklist: [
+         "sip some water 💧",
         "cool cloth on forehead or neck",
         "lower the lights",
         "unclench your jaw and shoulders",
         "rest your eyes for a bit"
       ],
 
+       medicines: [
+         {
+           id: "kipnol-tr-40",
+           group: "morning",
+           name: "Kipnol TR 40",
+           timing: "After breakfast.",
+           scheduled: true
+         },
+         {
+           id: "amtop-10",
+           group: "evening",
+           name: "Amtop 10",
+           timing: "At night, after dinner.",
+           scheduled: true
+         },
+         {
+           id: "flenar",
+           group: "evening",
+           name: "Flenar",
+           timing: "At night, after dinner.",
+           scheduled: true
+         },
+         {
+           id: "petril-md-0-25",
+           group: "evening",
+           name: "Petril MD 0.25",
+           timing: "After dinner.",
+           scheduled: true
+         },
+         {
+           id: "migraitiz",
+           group: "sos",
+           name: "Migraitiz",
+           timing: "SOS · As needed",
+           scheduled: false
+         }
+       ],
+
        // Small interface labels live here too, so every visible phrase is easy to edit.
        highlightPhrases: ["YOUR SMILE", "MAI SAATH HU TERE"],
        labels: {
         dimScreen: "dim the screen",
         note: "personal note",
-        breathing: "a soft pause",
-        breatheIn: "breathe in",
-        breatheOut: "breathe out",
-        checklist: "small comforts",
-        checklistHelper: "no pressure, just reminders",
+         breathing: "a soft pause",
+         breatheIn: "breathe in",
+         breatheOut: "breathe out",
+         checklist: "small comforts",
+         checklistHelper: "no pressure, just reminders",
+         comfortTitle: "for the days you forget 🌙",
+         comfortSubtitle: "little reminders, for whenever you need them 🤍",
+         comfortOpen: "a little reminder for you 🤍",
+         comfortClose: "close this little section",
+          medicine: "your little medicine corner 💊",
+         medicineDisclaimer: "Follow the prescription. This tracker is only a reminder.",
+         medicineEdit: "edit medicine details",
+         medicineClose: "close editor",
+         medicineEditorIntro: "Update names or timing text here to keep this tracker aligned with the prescription.",
+         medicineSave: "save changes",
+         medicineCancel: "cancel",
+         medicineNameLabel: "Medicine name",
+         medicineTimingLabel: "Timing or instruction",
+         medicineScheduledLabel: "scheduled",
+         medicineAsNeededLabel: "as needed",
+         medicineNotTaken: "not taken today",
+         medicineTaken: "taken today",
+         medicineMarkTaken: "mark as taken",
+         medicineUndoTaken: "undo taken",
+         medicineUndo: "undo",
+         medicineSaved: "Medicine details saved.",
+         medicineInvalid: "Please keep each medicine name and timing filled in.",
+         medicineMarkedTaken: "marked as taken.",
+         medicineMarkedNotTaken: "marked as not taken.",
+         medicineGroups: {
+           morning: "Morning",
+           evening: "After dinner / night",
+           sos: "SOS medicine"
+         },
         thought: "for this moment",
         gentleThought: "a gentle thought",
         memories: "things that make you smile 🌸",
@@ -969,9 +1605,19 @@
      $("#breathing-heading").textContent = CONFIG.labels.breathing;
      $("#checklist-heading").textContent = CONFIG.labels.checklist;
      $("#checklist-helper").textContent = CONFIG.labels.checklistHelper;
-     $("#thought-heading").textContent = CONFIG.labels.thought;
-     $("#thought-button").textContent = CONFIG.labels.gentleThought;
-     $("#memories-heading").textContent = CONFIG.labels.memories;
+      $("#medicine-heading").textContent = CONFIG.labels.medicine;
+      $("#medicine-disclaimer").textContent = CONFIG.labels.medicineDisclaimer;
+      $("#medicine-edit-toggle").textContent = CONFIG.labels.medicineEdit;
+      $("#medicine-editor-intro").textContent = CONFIG.labels.medicineEditorIntro;
+      $("#medicine-save").textContent = CONFIG.labels.medicineSave;
+      $("#medicine-cancel").textContent = CONFIG.labels.medicineCancel;
+      $("#thought-heading").textContent = CONFIG.labels.thought;
+      $("#thought-button").textContent = CONFIG.labels.gentleThought;
+      $("#comfort-heading").textContent = CONFIG.labels.comfortTitle;
+      $("#comfort-subtitle").textContent = CONFIG.labels.comfortSubtitle;
+      $("#comfort-open").textContent = CONFIG.labels.comfortOpen;
+      $("#comfort-close").textContent = CONFIG.labels.comfortClose;
+      $("#memories-heading").textContent = CONFIG.labels.memories;
      $("#sleep-heading").textContent = CONFIG.labels.sleep;
      $("#sleep-button-label").textContent = CONFIG.labels.sleepButton;
      $("#sleep-message").textContent = CONFIG.labels.sleepMessage;
@@ -989,8 +1635,8 @@
          highlight.textContent = match;
          element.append(highlight);
          cursor = offset + match.length;
-         return match;
-       });
+          return match;
+        });
        element.append(document.createTextNode(paragraph.slice(cursor)));
        noteCopy.append(element);
      });
@@ -1015,7 +1661,346 @@
 
       label.append(input, checkBox, copy);
       listItem.append(label);
-      checklist.append(listItem);
+       checklist.append(listItem);
+      });
+
+     const MEDICINE_STORAGE_KEY = "manee-medicine-tracker-v1";
+     const medicineGroupOrder = ["morning", "evening", "sos"];
+
+     const getMedicineDateKey = (date = new Date()) => [
+       date.getFullYear(),
+       String(date.getMonth() + 1).padStart(2, "0"),
+       String(date.getDate()).padStart(2, "0")
+     ].join("-");
+
+     const cloneDefaultMedicines = () => CONFIG.medicines.map((medicine) => ({ ...medicine }));
+
+     const normalizeMedicine = (medicine) => {
+       if (!medicine || typeof medicine !== "object") return null;
+       if (typeof medicine.id !== "string" || !medicine.id) return null;
+       if (!medicineGroupOrder.includes(medicine.group)) return null;
+       if (typeof medicine.name !== "string" || !medicine.name.trim()) return null;
+       if (typeof medicine.timing !== "string" || !medicine.timing.trim()) return null;
+
+       return {
+         id: medicine.id,
+         group: medicine.group,
+         name: medicine.name.trim(),
+         timing: medicine.timing.trim(),
+         scheduled: medicine.group !== "sos"
+       };
+     };
+
+     const loadMedicineState = () => {
+       const today = getMedicineDateKey();
+       let storedState;
+
+       try {
+         storedState = JSON.parse(window.localStorage.getItem(MEDICINE_STORAGE_KEY));
+       } catch (_error) {
+         storedState = null;
+       }
+
+       const storedMedicines = Array.isArray(storedState?.medicines)
+         ? storedState.medicines.map(normalizeMedicine).filter(Boolean)
+         : [];
+       const storedById = new Map(storedMedicines.map((medicine) => [medicine.id, medicine]));
+       const defaultMedicines = cloneDefaultMedicines();
+       const defaultIds = new Set(defaultMedicines.map((medicine) => medicine.id));
+       const medicines = [
+         ...defaultMedicines.map((medicine) => storedById.get(medicine.id) || medicine),
+         ...storedMedicines.filter((medicine) => !defaultIds.has(medicine.id))
+       ];
+       const validScheduledIds = new Set(medicines.filter((medicine) => medicine.scheduled).map((medicine) => medicine.id));
+       const storedTakenIds = Array.isArray(storedState?.takenIds) ? storedState.takenIds : [];
+       const takenIds = storedState?.date === today
+         ? [...new Set(storedTakenIds.filter((id) => validScheduledIds.has(id)))]
+         : [];
+
+       return { date: today, medicines, takenIds };
+     };
+
+     const medicineState = loadMedicineState();
+
+     const saveMedicineState = () => {
+       try {
+         window.localStorage.setItem(MEDICINE_STORAGE_KEY, JSON.stringify(medicineState));
+       } catch (_error) {
+         // The tracker still works for this visit if browser storage is unavailable.
+       }
+     };
+
+     saveMedicineState();
+
+     const medicineGroups = $("#medicine-groups");
+     const medicineFeedback = $("#medicine-feedback");
+     const medicineEditor = $("#medicine-editor");
+     const medicineEditorFields = $("#medicine-editor-fields");
+     const medicineEditorMessage = $("#medicine-editor-message");
+     const medicineEditToggle = $("#medicine-edit-toggle");
+
+     const findMedicine = (medicineId) => medicineState.medicines.find((medicine) => medicine.id === medicineId);
+
+     const restoreMedicineActionFocus = (medicineId) => {
+       const action = [...medicineGroups.querySelectorAll(".medicine-action")]
+         .find((button) => button.dataset.medicineId === medicineId);
+       action?.focus({ preventScroll: true });
+     };
+
+     const setMedicineFeedback = (message, undoMedicineId = null) => {
+       medicineFeedback.replaceChildren();
+       if (!message) return;
+
+       const messageText = document.createElement("span");
+       messageText.textContent = message;
+       medicineFeedback.append(messageText);
+
+       if (undoMedicineId) {
+         const undoButton = document.createElement("button");
+         undoButton.className = "medicine-undo";
+         undoButton.type = "button";
+         undoButton.textContent = CONFIG.labels.medicineUndo;
+         undoButton.addEventListener("click", () => {
+           const medicine = findMedicine(undoMedicineId);
+           if (!medicine || !medicineState.takenIds.includes(undoMedicineId)) return;
+           medicineState.takenIds = medicineState.takenIds.filter((id) => id !== undoMedicineId);
+           saveMedicineState();
+           renderMedicineTracker();
+           restoreMedicineActionFocus(undoMedicineId);
+           setMedicineFeedback(`${medicine.name} ${CONFIG.labels.medicineMarkedNotTaken}`);
+         });
+         medicineFeedback.append(undoButton);
+       }
+     };
+
+     const toggleMedicineTaken = (medicineId) => {
+       resetMedicineDayIfNeeded();
+       const medicine = findMedicine(medicineId);
+       if (!medicine || !medicine.scheduled) return;
+
+       const wasTaken = medicineState.takenIds.includes(medicineId);
+       if (wasTaken) {
+         medicineState.takenIds = medicineState.takenIds.filter((id) => id !== medicineId);
+         saveMedicineState();
+         renderMedicineTracker();
+         restoreMedicineActionFocus(medicineId);
+         setMedicineFeedback(`${medicine.name} ${CONFIG.labels.medicineMarkedNotTaken}`);
+         return;
+       }
+
+       medicineState.takenIds = [...medicineState.takenIds, medicineId];
+       saveMedicineState();
+       renderMedicineTracker();
+       restoreMedicineActionFocus(medicineId);
+       setMedicineFeedback(`${medicine.name} ${CONFIG.labels.medicineMarkedTaken}`, medicineId);
+     };
+
+     const renderMedicineTracker = () => {
+       medicineGroups.replaceChildren();
+
+       medicineGroupOrder.forEach((groupName) => {
+         const groupMedicines = medicineState.medicines.filter((medicine) => medicine.group === groupName);
+         if (!groupMedicines.length) return;
+
+         const group = document.createElement("section");
+         group.className = "medicine-group";
+         group.setAttribute("aria-labelledby", `medicine-group-${groupName}`);
+
+         const groupHeading = document.createElement("div");
+         groupHeading.className = "medicine-group-heading";
+         const heading = document.createElement("h3");
+         heading.id = `medicine-group-${groupName}`;
+         heading.textContent = CONFIG.labels.medicineGroups[groupName];
+         const groupType = document.createElement("span");
+         groupType.textContent = groupName === "sos"
+           ? CONFIG.labels.medicineAsNeededLabel
+           : CONFIG.labels.medicineScheduledLabel;
+         groupHeading.append(heading, groupType);
+
+         const list = document.createElement("ul");
+         list.className = "medicine-list";
+
+         groupMedicines.forEach((medicine) => {
+           const taken = medicineState.takenIds.includes(medicine.id);
+           const listItem = document.createElement("li");
+           const card = document.createElement("article");
+           card.className = "medicine-card";
+           if (taken) card.classList.add("is-taken");
+           if (!medicine.scheduled) card.classList.add("is-sos");
+
+           const main = document.createElement("div");
+           main.className = "medicine-card-main";
+           const statusDot = document.createElement("span");
+           statusDot.className = "medicine-status-dot";
+           statusDot.setAttribute("aria-hidden", "true");
+           if (taken) statusDot.classList.add("is-taken");
+           if (!medicine.scheduled) statusDot.classList.add("is-sos");
+
+           const copy = document.createElement("div");
+           copy.className = "medicine-copy";
+           const name = document.createElement("p");
+           name.className = "medicine-name";
+           name.textContent = medicine.name;
+           const timing = document.createElement("p");
+           timing.className = "medicine-timing";
+           timing.textContent = medicine.timing;
+           const status = document.createElement("p");
+           status.className = "medicine-status";
+           status.textContent = medicine.scheduled
+             ? (taken ? CONFIG.labels.medicineTaken : CONFIG.labels.medicineNotTaken)
+             : CONFIG.labels.medicineAsNeededLabel;
+           copy.append(name, timing, status);
+           main.append(statusDot, copy);
+           card.append(main);
+
+           if (medicine.scheduled) {
+             const action = document.createElement("button");
+             action.className = "medicine-action";
+             action.type = "button";
+             action.dataset.medicineId = medicine.id;
+             action.setAttribute("aria-pressed", String(taken));
+             action.setAttribute("aria-label", `${taken ? CONFIG.labels.medicineUndoTaken : CONFIG.labels.medicineMarkTaken}: ${medicine.name}`);
+             action.textContent = taken ? CONFIG.labels.medicineUndoTaken : CONFIG.labels.medicineMarkTaken;
+             action.addEventListener("click", () => toggleMedicineTaken(medicine.id));
+             card.append(action);
+           }
+
+           listItem.append(card);
+           list.append(listItem);
+         });
+
+         group.append(groupHeading, list);
+         medicineGroups.append(group);
+       });
+     };
+
+     renderMedicineTracker();
+
+     let medicineResetTimer;
+     const resetMedicineDayIfNeeded = () => {
+       const today = getMedicineDateKey();
+       if (medicineState.date === today) return;
+       medicineState.date = today;
+       medicineState.takenIds = [];
+       saveMedicineState();
+       renderMedicineTracker();
+       setMedicineFeedback("");
+     };
+
+     const scheduleMedicineDayReset = () => {
+       window.clearTimeout(medicineResetTimer);
+       const now = new Date();
+       const nextDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 1);
+       medicineResetTimer = window.setTimeout(() => {
+         resetMedicineDayIfNeeded();
+         scheduleMedicineDayReset();
+       }, Math.max(1000, nextDay.getTime() - now.getTime()));
+     };
+
+     scheduleMedicineDayReset();
+     document.addEventListener("visibilitychange", () => {
+       if (!document.hidden) resetMedicineDayIfNeeded();
+     });
+     window.addEventListener("focus", resetMedicineDayIfNeeded);
+
+     const renderMedicineEditor = () => {
+       medicineEditorFields.replaceChildren();
+
+       medicineState.medicines.forEach((medicine) => {
+         const fieldset = document.createElement("fieldset");
+         fieldset.className = "medicine-edit-card";
+         fieldset.dataset.medicineId = medicine.id;
+
+         const legend = document.createElement("legend");
+         legend.textContent = `${CONFIG.labels.medicineGroups[medicine.group]} · ${medicine.scheduled ? CONFIG.labels.medicineScheduledLabel : CONFIG.labels.medicineAsNeededLabel}`;
+
+         const nameId = `medicine-name-${medicine.id}`;
+         const nameLabel = document.createElement("label");
+         nameLabel.htmlFor = nameId;
+         nameLabel.textContent = CONFIG.labels.medicineNameLabel;
+         const nameInput = document.createElement("input");
+         nameInput.type = "text";
+         nameInput.id = nameId;
+         nameInput.name = `name-${medicine.id}`;
+         nameInput.value = medicine.name;
+         nameInput.setAttribute("aria-required", "true");
+         nameInput.dataset.medicineField = "name";
+
+         const timingId = `medicine-timing-${medicine.id}`;
+         const timingLabel = document.createElement("label");
+         timingLabel.htmlFor = timingId;
+         timingLabel.textContent = CONFIG.labels.medicineTimingLabel;
+         const timingInput = document.createElement("input");
+         timingInput.type = "text";
+         timingInput.id = timingId;
+         timingInput.name = `timing-${medicine.id}`;
+         timingInput.value = medicine.timing;
+         timingInput.setAttribute("aria-required", "true");
+         timingInput.dataset.medicineField = "timing";
+
+         fieldset.append(legend, nameLabel, nameInput, timingLabel, timingInput);
+         medicineEditorFields.append(fieldset);
+       });
+     };
+
+     const closeMedicineEditor = (shouldFocus = false) => {
+       medicineEditor.hidden = true;
+       medicineEditToggle.setAttribute("aria-expanded", "false");
+       medicineEditToggle.textContent = CONFIG.labels.medicineEdit;
+       medicineEditorMessage.textContent = "";
+       if (shouldFocus) medicineEditToggle.focus({ preventScroll: true });
+     };
+
+     medicineEditToggle.addEventListener("click", () => {
+       if (medicineEditor.hidden) {
+         renderMedicineEditor();
+         medicineEditor.hidden = false;
+         medicineEditToggle.setAttribute("aria-expanded", "true");
+         medicineEditToggle.textContent = CONFIG.labels.medicineClose;
+         medicineEditor.querySelector("input")?.focus({ preventScroll: true });
+       } else {
+         closeMedicineEditor();
+       }
+     });
+
+     $("#medicine-cancel").addEventListener("click", () => closeMedicineEditor(true));
+     medicineEditor.addEventListener("submit", (event) => {
+       event.preventDefault();
+       const updatedMedicines = [];
+       let firstInvalidInput;
+
+       medicineEditorFields.querySelectorAll(".medicine-edit-card").forEach((fieldset) => {
+         const originalMedicine = findMedicine(fieldset.dataset.medicineId);
+         const nameInput = fieldset.querySelector('[data-medicine-field="name"]');
+         const timingInput = fieldset.querySelector('[data-medicine-field="timing"]');
+         const name = nameInput.value.trim();
+         const timing = timingInput.value.trim();
+         const nameIsInvalid = !name;
+         const timingIsInvalid = !timing;
+         nameInput.setAttribute("aria-invalid", String(nameIsInvalid));
+         timingInput.setAttribute("aria-invalid", String(timingIsInvalid));
+
+         if (nameIsInvalid || timingIsInvalid) {
+           firstInvalidInput ||= nameIsInvalid ? nameInput : timingInput;
+           return;
+         }
+
+         updatedMedicines.push({ ...originalMedicine, name, timing });
+       });
+
+       if (firstInvalidInput) {
+         medicineEditorMessage.textContent = CONFIG.labels.medicineInvalid;
+         firstInvalidInput.focus({ preventScroll: true });
+         return;
+       }
+
+       medicineState.medicines = updatedMedicines;
+       const validScheduledIds = new Set(updatedMedicines.filter((medicine) => medicine.scheduled).map((medicine) => medicine.id));
+       medicineState.takenIds = medicineState.takenIds.filter((id) => validScheduledIds.has(id));
+       saveMedicineState();
+       renderMedicineTracker();
+       closeMedicineEditor(true);
+       setMedicineFeedback(CONFIG.labels.medicineSaved);
      });
 
      const memoriesGrid = $("#memories-grid");
@@ -1068,20 +2053,77 @@
     const thoughtButton = $("#thought-button");
     const thoughtResult = $("#thought-result");
     let previousThoughtIndex = -1;
-    thoughtButton.addEventListener("click", () => {
-      let nextIndex = Math.floor(Math.random() * CONFIG.gentleThoughts.length);
-      if (CONFIG.gentleThoughts.length > 1 && nextIndex === previousThoughtIndex) {
-        nextIndex = (nextIndex + 1) % CONFIG.gentleThoughts.length;
-      }
+     thoughtButton.addEventListener("click", () => {
+       let nextIndex = Math.floor(Math.random() * CONFIG.gentleThoughts.length);
+       if (CONFIG.gentleThoughts.length > 1 && nextIndex === previousThoughtIndex) {
+         nextIndex = (nextIndex + 1) % CONFIG.gentleThoughts.length;
+       }
       previousThoughtIndex = nextIndex;
       thoughtResult.classList.remove("is-visible");
       window.setTimeout(() => {
         thoughtResult.textContent = CONFIG.gentleThoughts[nextIndex];
-        thoughtResult.classList.add("is-visible");
-      }, prefersReducedMotion ? 0 : 80);
-    });
+         thoughtResult.classList.add("is-visible");
+       }, prefersReducedMotion ? 0 : 80);
+     });
 
-    const memoryCards = [...document.querySelectorAll(".memory-card")];
+      const comfortOpen = $("#comfort-open");
+      const comfortEntry = $("#comfort-entry");
+      const comfortPanel = $("#comfort-panel");
+      const comfortList = $("#comfort-list");
+      const comfortClose = $("#comfort-close");
+
+      CONFIG.comfortingMessages.forEach((message) => {
+        const letter = document.createElement("details");
+        letter.className = "comfort-letter";
+
+        const question = document.createElement("summary");
+        question.className = "comfort-question";
+        question.textContent = message.title;
+        question.addEventListener("click", () => {
+          if (letter.open) return;
+          comfortList.querySelectorAll(".comfort-letter[open]").forEach((otherLetter) => {
+            if (otherLetter !== letter) otherLetter.open = false;
+          });
+        });
+
+        const answer = document.createElement("div");
+        answer.className = "comfort-answer";
+        message.answer.forEach((paragraphText) => {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = paragraphText;
+          answer.append(paragraph);
+        });
+
+        letter.append(question, answer);
+        letter.addEventListener("toggle", () => {
+          if (!letter.open) return;
+          comfortList.querySelectorAll(".comfort-letter[open]").forEach((otherLetter) => {
+            if (otherLetter !== letter) otherLetter.open = false;
+          });
+        });
+        comfortList.append(letter);
+      });
+
+      const closeComfortSection = (shouldFocus = false) => {
+        comfortList.querySelectorAll(".comfort-letter[open]").forEach((letter) => {
+          letter.open = false;
+        });
+        comfortPanel.hidden = true;
+        comfortEntry.hidden = false;
+        comfortOpen.setAttribute("aria-expanded", "false");
+        if (shouldFocus) comfortOpen.focus({ preventScroll: true });
+      };
+
+      comfortOpen.addEventListener("click", () => {
+        comfortEntry.hidden = true;
+        comfortPanel.hidden = false;
+        comfortOpen.setAttribute("aria-expanded", "true");
+        comfortList.querySelector("summary")?.focus({ preventScroll: true });
+      });
+
+      comfortClose.addEventListener("click", () => closeComfortSection(true));
+
+     const memoryCards = [...document.querySelectorAll(".memory-card")];
     if (prefersReducedMotion || !("IntersectionObserver" in window)) {
       memoryCards.forEach((card) => card.classList.add("is-visible"));
     } else {
